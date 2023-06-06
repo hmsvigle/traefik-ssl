@@ -1,0 +1,12 @@
+ssl:
+  enabled: true
+api:
+  insecure: true
+service:
+  spec:
+    loadBalancerIP: xxx.xxx.xxx.xxx
+
+additionalArguments:
+  #- "--providers.kubernetesingress.ingressclass=ingress"
+  - "--log.level=DEBUG"
+  - "--providers.kubernetesingress.namespaces=ingress-dev,demospace,app-dev"
