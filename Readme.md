@@ -5,7 +5,7 @@
 ### 1.1 Prepare Traefiv2 Artifacts :
 
 ```sh
-$ helm repo add harbor_dag https://dockerhub.com/chartrepo/dag
+$ helm repo add dag https://dockerhub.com/chartrepo/dag
 "harbor_dag" has been added to your repositories
 
 $ chmod go-r kubeconfig
