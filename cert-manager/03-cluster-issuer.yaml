@@ -1,0 +1,18 @@
+# ClusterIssuer = Daimler Acme service + Traefik Class name + email
+# Update email-id before applying it 
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: daimler-acme
+spec:
+  acme:
+    server: https://acme.com/acme/ws/Acme.svc/InternalWebserverACME/directory
+    email: hmsvigle@gmail,com
+    privateKeySecretRef:
+      name: acme
+    solvers:
+    - http01:
+        ingress:
+          class: traefik
+---
