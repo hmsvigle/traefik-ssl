@@ -1,0 +1,39 @@
+# Deploy certificate in namespace, where traefik is deployed i.e ingress-dev
+# Update DNS name at all the places carefully.
+# We can use the same certificate for all application routing
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dev
+  namespace: ingress-dev
+spec:
+  commonName: abdc.intranet.com
+  secretName: dev
+  dnsNames:
+    - abdc.intranet.com
+  issuerRef:
+    name: acme
+    kind: ClusterIssuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-dashboard-ingr
+  namespace: ingress-dev
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`abc,intranet,com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+  tls:
+    domains:
+      - main: abc.intranet.com
+    secretName: dev
+---
