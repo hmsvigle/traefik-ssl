@@ -1,0 +1,25 @@
+global:
+  leaderElection:
+    namespace: "cert-manager"
+image:
+  repository: dockerhub.com/quay.io_jetstack_cert-manager-controller
+extraArgs:
+- --acme-http01-solver-image=dockerhub.com/quay.io_jetstack_cert-manager-acmesolver:v1.5.3
+extraEnv:
+- name: SSL_CERT_FILE
+  value: /etcd/acme-ca/cert.pem
+volumes:
+- name: acme-ca
+  secret:
+    secretName: acme-ca
+volumeMounts:
+- mountPath: /etcd/acme-ca
+  name: acme-ca
+webhook:
+  image:
+    repository: dockerhub.com/quay.io_jetstack_cert-manager-webhook
+cainjector:
+  image:
+    repository: dockerhub.com/quay.io_jetstack_cert-manager-cainjector
+startupapicheck:
+  enabled: false
