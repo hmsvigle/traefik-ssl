@@ -55,22 +55,22 @@ $ helm upgrade traefikv2 traefikv2/ \
 
   * **`PathPrefix`**: [ingressroute](nginx/nginx-ingressroute-pathprefix-no-ssl.yaml)
 
-  ![image](https://media.git.daimler.com/user/3406/files/9e57b380-37ec-11ec-9e00-8f69e635fcd4)
+ 
 
   * **`Path`**: [ingressroute](nginx/nginx-ingressroute-path-no-ssl.yaml)
   
-  ![image](https://media.git.daimler.com/user/3406/files/3b1e4f00-37f5-11ec-96c9-2434d6bb75bb)
+  
 
   * **`StripPrefix`**: [ingressroute](nginx/nginx-ingressroute-stripPrefix-no-ssl.yaml)
   
-  ![image](https://media.git.daimler.com/user/3406/files/630eb200-37f7-11ec-965c-126ba845cfd2)
+  
 
 
   ### 1.5 Traefik-dashboard non-ssl
    * Deploy [ingressroute](traefikv2/traefik-dashboard-ingressroute-no-ssl.yaml) for traefik-dashboard with no-ssl.
    
   
-  ![image](https://media.git.daimler.com/user/3406/files/58501f00-37ef-11ec-98da-18b33ac9d96f)
+ 
 
   
   
