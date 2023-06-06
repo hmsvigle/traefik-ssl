@@ -5,7 +5,7 @@
 ### 1.1 Prepare Traefiv2 Artifacts :
 
 ```sh
-$ helm repo add harbor_dag https://registry.app.corpintra.net/chartrepo/dag
+$ helm repo add harbor_dag https://dockerhub.com/chartrepo/dag
 "harbor_dag" has been added to your repositories
 
 $ chmod go-r kubeconfig
@@ -19,8 +19,8 @@ Update Complete. ⎈Happy Helming!⎈
 
 $ helm search repo traefik
 NAME                    CHART VERSION   APP VERSION     DESCRIPTION
-harbor_dag/traefik      1.88.0          1.7.20          A Traefik based Kubernetes ingress controller w...
-harbor_dag/traefikv2    10.3.6          2.5.3           A Traefik based Kubernetes ingress controller
+dag/traefik      1.88.0          1.7.20          A Traefik based Kubernetes ingress controller w...
+dag/traefikv2    10.3.6          2.5.3           A Traefik based Kubernetes ingress controller
 
 
 $ helm pull harbor_dag/traefikv2 --untar
@@ -170,7 +170,7 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
     
     $ kubectl get clusterissuer
       NAME           READY   AGE
-      daimler-acme   True    2d
+      acme   True    2d
 
    ```
    ### 2.5 Deploy NetworkPolicy to namespace where traefik is deployed:
@@ -225,10 +225,10 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
 
   * Verify traefik-dashboard url
   
-  ![image](https://media.git.daimler.com/user/3406/files/d71f0180-485b-11ec-8507-118e98403b72)
+  
   
   * Deploy nginx with [ingressroute-ssl.yaml](./nginx/nginx-ingressroute-ssl.yaml) & verify in browser
   
-  ![image](https://media.git.daimler.com/user/3406/files/bc4c8d00-485b-11ec-897d-6c59f55ef277)
+
 
   
