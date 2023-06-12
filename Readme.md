@@ -14,7 +14,7 @@ WARNING: Kubernetes configuration file is world-readable. This is insecure. Loca
 
 $ helm repo update
 Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "harbor_dag" chart repository
+...Successfully got an update from the "dag" chart repository
 Update Complete. ⎈Happy Helming!⎈
 
 $ helm search repo traefik
@@ -93,11 +93,11 @@ $ helm pull jetstack/cert-manager --version v1.5.3  --untar
   ### 2.2 Deploy Secret 
   
   * Create cert-manager namespace :- `kubectl create ns cert-manager`
-  * Deploy Secret with Daimler CA root Certificate with [01-secret.yaml](./cert-manager/01-secret.yaml) : `kubectl apply -f ./cert-manager/01-secret.yaml -n cert-manager`
+  * Deploy Secret with CA root Certificate with [01-secret.yaml](./cert-manager/01-secret.yaml) : `kubectl apply -f ./cert-manager/01-secret.yaml -n cert-manager`
   
   ### 2.3 Deploy Cert-Manager
   
-  * Deploy Cert-manager with Daimler CA integrated Secret in it. Use [Custom-Values.yaml](./cert-manager/02-custom-values.yaml)
+  * Deploy Cert-manager with CA integrated Secret in it. Use [Custom-Values.yaml](./cert-manager/02-custom-values.yaml)
   
 ```sh
 $ 
@@ -160,7 +160,7 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
 
   ### 2.4 Deploy ClusterIssuer into Default namespace:
    * ClusterIssuer will be same for all components. We can define only one class name as input. Cant confugure array of classes.
-   * ClusterIssuer = Daimler Acme service + Traefik Class name + email
+   * ClusterIssuer = Acme service + Traefik Class name + email
    * Update email-id before applying it.
    * Deploy with [03-ClusterIssuer.yaml](./cert-manager/03-cluster-issuer.yaml)
    
@@ -216,10 +216,10 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook
   order.acme.cert-manager.io/traefik-dashboard-5dtj6-778711773   Valid   72s
 
   NAME                                                                          STATE     DOMAIN                                   AGE
-  challenge.acme.cert-manager.io/traefik-dashboard-5dtj6-778711773-3645429168   pending   iaas-c02-53-6-21-162.dhc.corpintra.net   71s
+  challenge.acme.cert-manager.io/traefik-dashboard-5dtj6-778711773-3645429168   pending   abcd.com   71s
   
   NAME                                                         APPROVED   DENIED   READY   ISSUER         REQUESTOR                                         AGE
-  certificaterequest.cert-manager.io/traefik-dashboard-5dtj6   True                True   daimler-acme   system:serviceaccount:cert-manager:cert-manager   72s
+  certificaterequest.cert-manager.io/traefik-dashboard-5dtj6   True                True   acme   system:serviceaccount:cert-manager:cert-manager   72s
   
   ```
 
